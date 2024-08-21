@@ -1,0 +1,450 @@
+[33mwarning[0m: redundant modifier: 'public'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:282:1:
+    [36m| [0m
+[36m282[0m [36m| [0mpublic sealed abstract class C1 {}   // Warning, redundant modifier, 'sealed' implies 'public'[0m
+    [36m| [0m[33m^^^^^^[0m [36m~~~~~~ [0m
+    [36m| [0m[33m|[0m
+    [36m| [0m[33m'sealed' implies 'public'[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+[33mwarning[0m: redundant modifier: 'open'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:283:8:
+    [36m| [0m
+[36m283[0m [36m| [0msealed open abstract class C2 {}     // Warning, redundant modifier, 'sealed' implies 'open'[0m
+    [36m| [0m[36m~~~~~~[0m [33m^^^^ 'sealed' implies 'open'[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+[33mwarning[0m: redundant modifier: 'public'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:288:1:
+    [36m| [0m
+[36m288[0m [36m| [0mpublic sealed abstract class S3 <: C1 {}  // OK[0m
+    [36m| [0m[33m^^^^^^[0m [36m~~~~~~ [0m
+    [36m| [0m[33m|[0m
+    [36m| [0m[33m'sealed' implies 'public'[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:925:14:
+    [36m| [0m
+[36m925[0m [36m| [0m        case _ => 0[0m
+    [36m| [0m             [33m^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:939:14:
+    [36m| [0m
+[36m939[0m [36m| [0m        case Year(0) | Year(1) | Month(_) => "Ok" // Ok[0m
+    [36m| [0m             [33m^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:939:24:
+    [36m| [0m
+[36m939[0m [36m| [0m        case Year(0) | Year(1) | Month(_) => "Ok" // Ok[0m
+    [36m| [0m                       [33m^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:940:14:
+    [36m| [0m
+[36m940[0m [36m| [0m        case TimeUnit.Month(n) => "x has ${n} months"[0m
+    [36m| [0m             [33m^^^^^^^^^^^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused expression
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:184:14:
+    [36m| [0m
+[36m184[0m [36m| [0m        case a: Derived_ => "Derived"[0m
+    [36m| [0m             [33m^ unused expression[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused expression
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:185:14:
+    [36m| [0m
+[36m185[0m [36m| [0m        case b: Base_ => "Base"[0m
+    [36m| [0m             [33m^ unused expression[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable block in 'if' expression
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:429:26:
+    [36m| [0m
+[36m429[0m [36m| [0m      if (number % 2 == 0) {[0m
+    [36m| [0m [33m_[0m[33m_________________________^[0m
+[36m430[0m [36m| [0m[33m|[0m         println("偶数")[0m
+[36m431[0m [36m| [0m[33m|[0m     } else {[0m
+    [36m| [0m[33m|[0m[33m_[0m[33m____^ unreachable block in 'if' expression[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable block in 'if' expression
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:431:12:
+    [36m| [0m
+[36m431[0m [36m| [0m      } else {[0m
+    [36m| [0m [33m_[0m[33m___________^[0m
+[36m432[0m [36m| [0m[33m|[0m         println("奇数")[0m
+[36m433[0m [36m| [0m[33m|[0m     }[0m
+    [36m| [0m[33m|[0m[33m_[0m[33m____^ unreachable block in 'if' expression[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'bit'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:438:9:
+    [36m| [0m
+[36m438[0m [36m| [0m    let bit = if (voltage < 2.5) {[0m
+    [36m| [0m        [33m^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable block in 'if' expression
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:438:34:
+    [36m| [0m
+[36m438[0m [36m| [0m      let bit = if (voltage < 2.5) {[0m
+    [36m| [0m [33m_[0m[33m_________________________________^[0m
+[36m439[0m [36m| [0m[33m|[0m         zero[0m
+[36m440[0m [36m| [0m[33m|[0m     } else {[0m
+    [36m| [0m[33m|[0m[33m_[0m[33m____^ unreachable block in 'if' expression[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'p1'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:509:9:
+    [36m| [0m
+[36m509[0m [36m| [0m    let p1 = 2 ** 3               // p1 = 8[0m
+    [36m| [0m        [33m^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'p2'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:510:9:
+    [36m| [0m
+[36m510[0m [36m| [0m    let p2 = 2 ** UInt64(3 ** 2)  // p2 = 512[0m
+    [36m| [0m        [33m^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'p3'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:511:9:
+    [36m| [0m
+[36m511[0m [36m| [0m    let p3 = 2.0 ** 3.0           // p3 = 8.0[0m
+    [36m| [0m        [33m^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'p4'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:512:9:
+    [36m| [0m
+[36m512[0m [36m| [0m    let p4 = 2.0 ** 3 ** 2        // p4 = 512.0[0m
+    [36m| [0m        [33m^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'p5'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:513:9:
+    [36m| [0m
+[36m513[0m [36m| [0m    let p5 = 2.0 ** 3.0           // p5 = 8.0[0m
+    [36m| [0m        [33m^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'p6'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:514:9:
+    [36m| [0m
+[36m514[0m [36m| [0m    let p6 = 2.0 ** 3.0 ** 2.0    // p6 = 512.0[0m
+    [36m| [0m        [33m^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'f1'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:538:9:
+    [36m| [0m
+[36m538[0m [36m| [0m    let f1 = { a: Int64, b: Int64 => a + b }[0m
+    [36m| [0m        [33m^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'display'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:539:9:
+    [36m| [0m
+[36m539[0m [36m| [0m    var display = { => println("Hello") }[0m
+    [36m| [0m        [33m^^^^^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'Lam'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:541:13:
+    [36m| [0m
+[36m541[0m [36m| [0m    func f2(Lam: () -> Unit) { }[0m
+    [36m| [0m            [33m^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'f2Res'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:542:9:
+    [36m| [0m
+[36m542[0m [36m| [0m    let f2Res = f2{ println("World") }[0m
+    [36m| [0m        [33m^^^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'sum1'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:544:9:
+    [36m| [0m
+[36m544[0m [36m| [0m    var sum1: (Int64, Int64) -> Int64 = { a, b => a + b }[0m
+    [36m| [0m        [33m^^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'sum2'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:545:9:
+    [36m| [0m
+[36m545[0m [36m| [0m    var sum2: (Int64, Int64) -> Int64 = { a: Int64, b => a + b }[0m
+    [36m| [0m        [33m^^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'i'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:603:10:
+    [36m| [0m
+[36m603[0m [36m| [0m    for (i in 0..1000) {[0m
+    [36m| [0m         [33m^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'i'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:622:10:
+    [36m| [0m
+[36m622[0m [36m| [0m    for (i in 0..1000) {[0m
+    [36m| [0m         [33m^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'i'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:682:10:
+    [36m| [0m
+[36m682[0m [36m| [0m    for (i in 0..1000) {[0m
+    [36m| [0m         [33m^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'i'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:716:10:
+    [36m| [0m
+[36m716[0m [36m| [0m    for (i in 0..100) {[0m
+    [36m| [0m         [33m^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable expression
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:861:31:
+    [36m| [0m
+[36m861[0m [36m| [0m    let r111: Int64 = a111 ?? 0[0m
+    [36m| [0m                              [33m^ unreachable expression[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable expression
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:862:23:
+    [36m| [0m
+[36m862[0m [36m| [0m    let r222: Int64 = b111 ?? 0[0m
+    [36m| [0m                      [33m^^^^ unreachable expression[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'r2zz'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:885:13:
+    [36m| [0m
+[36m885[0m [36m| [0m        let r2zz = bzz.getOrThrow()[0m
+    [36m| [0m            [33m^^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'rrr'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:890:9:
+    [36m| [0m
+[36m890[0m [36m| [0m    let rrr = RGBColor.Red [0m
+    [36m| [0m        [33m^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'ggg'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:891:9:
+    [36m| [0m
+[36m891[0m [36m| [0m    let ggg = Green[0m
+    [36m| [0m        [33m^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'bbb'
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:892:9:
+    [36m| [0m
+[36m892[0m [36m| [0m    let bbb = Blue(100)[0m
+    [36m| [0m        [33m^^^ unused variable[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:902:14:
+    [36m| [0m
+[36m902[0m [36m| [0m        case 60 => "C"[0m
+    [36m| [0m             [33m^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:905:14:
+    [36m| [0m
+[36m905[0m [36m| [0m        case _ => "Not a valid score"[0m
+    [36m| [0m             [33m^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:917:14:
+    [36m| [0m
+[36m917[0m [36m| [0m        case (name, 100) => "${name} is 100 years old"[0m
+    [36m| [0m             [33m^^^^^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:939:34:
+    [36m| [0m
+[36m939[0m [36m| [0m        case Year(0) | Year(1) | Month(_) => "Ok" // Ok[0m
+    [36m| [0m                                 [33m^^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:948:14:
+    [36m| [0m
+[36m948[0m [36m| [0m        case SetTimeUnit(Month(month)) => println("Set month ${month}")[0m
+    [36m| [0m             [33m^^^^^^^^^^^^^^^^^^^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:949:14:
+    [36m| [0m
+[36m949[0m [36m| [0m        case _ => ()[0m
+    [36m| [0m             [33m^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:954:14:
+    [36m| [0m
+[36m954[0m [36m| [0m        case 1 => let r1 = "x = 1"[0m
+    [36m| [0m             [33m^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:958:14:
+    [36m| [0m
+[36m958[0m [36m| [0m        case _ => let r3 = "x != 1 and x != 0"[0m
+    [36m| [0m             [33m^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:964:14:
+    [36m| [0m
+[36m964[0m [36m| [0m        case Red_(r) where r < 0 => "Red = 0"[0m
+    [36m| [0m             [33m^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:965:14:
+    [36m| [0m
+[36m965[0m [36m| [0m        case Red_(r) => "Red = ${r}"[0m
+    [36m| [0m             [33m^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:966:14:
+    [36m| [0m
+[36m966[0m [36m| [0m        case Green_(g) where g < 0 => "Green = 0" // Matched.[0m
+    [36m| [0m             [33m^^^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:967:14:
+    [36m| [0m
+[36m967[0m [36m| [0m        case Green_(g) => "Green = ${g}"[0m
+    [36m| [0m             [33m^^^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:968:14:
+    [36m| [0m
+[36m968[0m [36m| [0m        case Blue_(b) where b < 0 => "Blue = 0"[0m
+    [36m| [0m             [33m^^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable block in '' expression
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:969:14:
+    [36m| [0m
+[36m969[0m [36m| [0m        case Blue_(b) => "Blue = ${b}"[0m
+    [36m| [0m             [33m^^^^^^^^ unreachable block in '' expression[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:982:14:
+    [36m| [0m
+[36m982[0m [36m| [0m        case 0 => "xx_ = 0"[0m
+    [36m| [0m             [33m^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:983:14:
+    [36m| [0m
+[36m983[0m [36m| [0m        case 1 => "xx_ = 1"[0m
+    [36m| [0m             [33m^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable pattern
+   [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:989:13:
+    [36m| [0m
+[36m989[0m [36m| [0m    if (let Some(value) <- result_) {[0m
+    [36m| [0m            [33m^^^^^^^^^^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unreachable expression
+    [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:1161:5:
+     [36m| [0m
+[36m1145[0m [36m| [0m        return 2[0m
+     [36m| [0m        [36m~~~~~~~~ any code following this expression is unreachable[0m
+[36m1146[0m [36m| [0m    // }[0m
+     [36m| [0m...[0m
+[36m1161[0m [36m| [0m    var obj = AtomicBool(true)[0m
+     [36m| [0m    [33m^^^^^^^^^^^^^^^^^^^^^^^^^^ unreachable expression[0m
+     [36m| [0m
+     [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'i'
+    [36m==>[0m /Users/mac/cangjieProject/CangjieDemo/src/main.cj:1338:52:
+     [36m| [0m
+[36m1338[0m [36m| [0m    let items: Array<Object> = Array<Object>(100, {i => Object()})[0m
+     [36m| [0m                                                   [33m^ unused variable[0m
+     [36m| [0m
+     [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+54 warnings generated, 54 warnings printed.
