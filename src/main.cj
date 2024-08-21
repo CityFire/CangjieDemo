@@ -375,6 +375,101 @@ func fly(item: Flyable): Unit {
     item.fly()
 }
 
+interface NamedType {
+    // static func typename(): String
+    static func typename(): String {
+        "interface NamedType"
+    }
+}
+
+interface IIIIII <: NamedType {
+    static func typename(): String {
+        f()
+    }
+    static func f(): String
+}
+
+
+class AAAAAA <: NamedType {
+    public static func typename(): String {
+        "A"
+    }
+}
+
+class BBBBBB <: NamedType {
+    public static func typename(): String {
+        "B"
+    }
+}
+class CCCCCC <: NamedType {}
+
+func printTypeName<T>() where T <: NamedType {
+    println("the type is ${ T.typename() }")
+}
+
+interface Addable {
+    func add(other: Int64): Int64
+}
+
+interface Subtractable {
+    func sub(other: Int64): Int64
+}
+
+class MyInt <: Addable & Subtractable {
+    var value = 0
+    public func add(other: Int64): Int64 {
+        value + other
+    }
+    public func sub(other: Int64): Int64 {
+        value - other
+    }
+}
+
+// 接口继承
+interface Calculable <: Addable & Subtractable {
+    func mul(other: Int64): Int64
+    func div(other: Int64): Int64
+}
+
+class MyInt_ <: Calculable {
+    var value = 0
+    public func add(other: Int64): Int64 {
+        value + other
+    }
+    public func sub(other: Int64): Int64 {
+        value - other
+    }
+    public func mul(other: Int64): Int64 {
+        value * other
+    }
+    public func div(other: Int64): Int64 {
+        value / other
+    }
+}
+
+interface I1 {
+   func f(a: Int64) {
+        a
+   }
+   static func g(a: Int64) {
+        a
+   }
+   func f1(a: Int64): Unit
+   static func g1(a: Int64): Unit
+}
+
+interface I2 <: I1 {
+    /*'override' is optional*/ func f(a: Int64) {
+       a + 1
+    }
+    // override func f(a: Int32) {} // Error, override function 'f' does not have an overridden function from its supertypes
+    static /*'redef' is optional*/ func g(a: Int64) {
+       a + 1
+    }
+    /*'override' is optional*/ func f1(a: Int64): Unit {}
+    static /*'redef' is optional*/ func g1(a: Int64): Unit {}
+}
+
 class C_ {
     var p: CString
 
@@ -1032,6 +1127,25 @@ main(): Int64 {
    fly(bird)
    fly(bat)
    fly(airplane)
+
+   println("the type is ${ AAAAAA.typename() }")
+   println("the type is ${ BBBBBB.typename() }")
+
+
+   println(NamedType.typename())
+   println(CCCCCC.typename())
+
+
+   printTypeName<AAAAAA>()
+   printTypeName<BBBBBB>()
+//    printTypeName<IIIIII>() // Error, 'I' must implement all static function. Otherwise, an unimplemented 'f' is called, causing problems.
+   
+
+   let myInt = MyInt_()
+   let add: Addable = myInt
+   let sub: Subtractable = myInt
+   let calc: Calculable = myInt
+
 
     // let a = ArrayList<String>() // Created an empty ArrayList whose element type is String
     // let b = ArrayList<String>(100) // Created an ArrayList whose element type is String, and allocate a space of 100
