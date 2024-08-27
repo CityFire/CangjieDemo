@@ -470,6 +470,214 @@ interface I2 <: I1 {
     static /*'redef' is optional*/ func g1(a: Int64): Unit {}
 }
 
+// 如果接口中的成员函数或操作符重载函数的返回值类型是 class 类型，那么允许实现函数的返回类型是其子类型。
+// I 中的 f 返回类型是一个 class 类型 Base，因此 C 中实现的 f 返回类型可以是 Base 的子类型 Sub。
+open class _Base_ {}
+class Sub_ <: _Base_ {}
+
+interface I_ {
+    func f(): _Base_
+}
+
+class C__ <: I_ {
+    public func f(): Sub_ {
+        Sub_()
+    }
+}
+
+// 接口的成员还可以为 class 类型提供默认实现。拥有默认实现的接口成员，当实现类型是 class 的时候，class 可以不提供自己的实现而继承接口的实现。
+// SayHi 中的 say 拥有默认实现，因此 A 实现 SayHi 时可以继承 say 的实现，而 B 也可以选择提供自己的 say 实现。
+interface SayHi {
+    func say() {
+        "hi"
+    }
+}
+
+class A_Say <: SayHi {}
+
+class B_Say <: SayHi {
+    public func say() {
+        "hi, B"
+    }
+}
+
+// 如果一个类型在实现多个接口时，多个接口中包含同一个成员的默认实现，这时会发生多重继承的冲突，语言无法选择最适合的实现，因此这时接口中的默认实现也会失效，需要实现类型提供自己的实现。
+// SayHi 和 SayHello 中都包含了 say 的实现，Foo 在实现这两个接口时就必须提供自己的实现，否则会出现编译错误。
+interface SayHi_ {
+    func say() {
+        "hi_"
+    }
+}
+
+interface SayHello_ {
+    func say() {
+        "hello_"
+    }
+}
+
+class Foo_ <: SayHi_ & SayHello_ {
+    public func say() {
+        "Foo_"
+    }
+}
+
+// struct、enum 和 class 在实现接口时，函数或属性定义前的 override 修饰符（或 redef 修饰符）是可选的，无论接口中的函数或属性是否存在默认实现。
+
+interface II_ {
+    func foo(): Int64 {
+        return 0
+    }
+}
+
+enum EE_ <: II_ {
+    elem 
+    public override func foo(): Int64 {
+        return 1
+    }
+}
+
+struct SS_ <: II_ {
+    public override func foo(): Int64 {
+        return 1
+    }
+}
+
+class Foo__ {
+    private var a = 0
+    private var j = 0
+
+    public mut prop i: Int64 {
+        get() {
+            j
+        }
+        set(v) {
+            j = v
+        }
+    }
+
+    public mut prop b: Int64 {
+        get() {
+            println("get")
+            a
+        }
+        set(value) {
+            println("set")
+            a = value
+        }
+    }
+
+    public prop c: Int64 {
+        get() { 0 }
+    }
+
+    public mut prop d: Int64 {
+        get() { 0 }
+        set(v) {}
+    }
+}
+
+open class A_prop {
+    private var valueX = 0
+    private static var valueY = 0
+
+    public open prop x: Int64 {
+        get() { valueX }
+    }
+
+    public static mut prop y: Int64 {
+        get() { valueY }
+        set(v) {
+            valueY = v
+        }
+    }
+}
+
+class B_prop <: A_prop {
+    private var valueX2 = 0
+    private static var valueY2 = 0
+
+    public override prop x: Int64 {
+        get() { valueX2 }
+    }
+
+    public redef static mut prop y: Int64 {
+        get() { valueY2 }
+        set(v) {
+            valueY2 = v
+        }
+    }
+}
+
+// 类似于抽象函数，我们在 interface 和抽象类中也可以声明抽象属性，这些抽象属性没有实现。
+interface I_prop {
+    prop a: Int64
+    mut prop b: Int64
+}
+
+abstract class C_prop {
+    public prop a: Int64
+}
+
+// 当实现类型实现 interface 或者非抽象子类继承抽象类时，必须要实现这些抽象属性。
+// 实现类型或子类在实现这些属性时，如果父类型属性带有 mut 修饰符，则子类型属性也需要带有 mut 修饰符，同时也必须保持一样的类型。
+class CC_prop <: I_prop {
+    private var value = 0
+
+    public prop a: Int64 {
+        get() { value }
+    }
+
+    public mut prop b: Int64 {
+        get() { value }
+        set(v) {
+            value = v 
+        }
+    }
+}
+
+interface II1 {
+    mut prop size: Int64
+}
+
+interface II2 {
+    func getSize(): Int64
+    func setSize(value: Int64): Unit
+}
+
+class CC22 <: II1 & II2 {
+    private var mySize = 0
+
+    public mut prop size: Int64 {
+        get() {
+            mySize
+        }
+        set(value) {
+            mySize = value
+        }
+    }
+
+    public func getSize() {
+        mySize
+    }
+
+    public func setSize(value: Int64) {
+        mySize = value
+    }
+}
+
+class AAA_ {
+    public prop x: Int64 {
+        get() {
+            123
+        }
+    }
+    public static prop y: Int64 {
+        get() {
+            321
+        }
+    }
+}
+
 class C_ {
     var p: CString
 
@@ -481,6 +689,12 @@ class C_ {
         unsafe { LibC.free(p) }
     }
 }
+
+// 类型别名
+type Time = TimeUnit
+// 泛型别名
+type RD<T> = RecordData<T>
+
 
 // client:
 main(): Int64 {
@@ -1147,6 +1361,27 @@ main(): Int64 {
    let calc: Calculable = myInt
 
 
+   var x__ = Foo__()
+    let y__ = x__.b + 1 // get
+    x__.b = y__ // set
+
+
+    let ai1: II1 = CC22()
+    ai1.size = 5
+    println(ai1.size)
+
+    let bi1: II2 = CC22()
+    bi1.setSize(5)
+    println(bi1.getSize())
+
+    var aaa1 = AAA_()
+    println(aaa1.x) // 123
+    println(AAA_.y) // 321
+
+    // 无 mut 修饰符的属性类似 let 声明的变量，不可以被赋值。
+    // 带有 mut 修饰符的属性类似 var 声明的变量，可以取值也可以被赋值。
+
+
     // let a = ArrayList<String>() // Created an empty ArrayList whose element type is String
     // let b = ArrayList<String>(100) // Created an ArrayList whose element type is String, and allocate a space of 100
     // let c = ArrayList<Int64>([0, 1, 2]) // Created an ArrayList whose element type is Int64, containing elements 0, 1, 2
@@ -1237,6 +1472,42 @@ main(): Int64 {
     for ((k, v) in map) {
         println("The key is ${k}, the value is ${v}")
     }
+
+    // println(times2plus10(9))
+
+    var g_a = G_A()
+    var g_b = G_B()
+    var g_c = G_C.X
+    g_a.foo<Int64>(10)
+    g_b.bar<String>("abc")
+    g_c.coo<Bool>(false)
+
+    var a_12: Int64 = 12
+    a_12.printIntAndArg<String>("twelve")
+
+    var res_g: ArrayList<Int64> = ArrayList([1,2,3,4])
+    var a_g: (Int64, Int64) = ToPair.fromArray<Int64>(res_g)
+
+    var a_pair: Pair_G<String, Int64> = Pair_G<String, Int64>("hello", 0)
+    println(a_pair.first())
+    println(a_pair.second())
+
+    var divCount = safeDiv(30, 5)
+    println("divCount:${divCount}")
+
+    
+    var year_time = Time.Year(2024)
+    var month_time = Time.Month(8)
+    
+    
+    // 泛型别名
+    var struct1: RD<Int32> = RecordData<Int32>(2)
+
+    // 泛型约束
+    var zoo: Zoo<Animal> = Zoo<Animal>()
+    zoo.addAnimal(Dog())
+    zoo.addAnimal(Fox())
+    zoo.allAnimalRuns()
 
 
 
@@ -1389,10 +1660,157 @@ x = obj.load() // x: 4
     server.close()
 
 */
+
+   
     
     
 
     return 0
+}
+
+// public interface ToString {
+//     func toString(): String
+// }
+
+class G_A {
+    func foo<T>(a: T): Unit where T <: ToString {
+        println("${a}")
+    }
+}
+
+struct G_B {
+    func bar<T>(a: T): Unit where T <: ToString {
+        println("${a}")
+    }
+}
+
+enum G_C {
+    | X | Y 
+
+    func coo <T>(a: T): Unit where T <: ToString {
+        println("${a}")
+    }
+}
+
+extend Int64 {
+    func printIntAndArg<T>(a: T) where T <: ToString {
+        println(this)
+        println("${a}")
+    }
+}
+
+class ToPair {
+    public static func fromArray<T>(l: ArrayList<T>): (T, T) {
+        return (l[0], l[1])
+    }
+}
+
+public interface Iterable_G<E> {
+    func iterator(): Iterable_G<E>
+}
+
+public interface Iterator_G<E> <: Iterable_G<E> {
+    func next(): Option<E>
+}
+
+public interface Collection_G<T> <: Iterable_G<T> {
+    prop size: Int64
+    func isEmpty(): Bool
+}
+
+public open class Node<K, V> where K <: Hashable & Equatable<K> {
+    public var key: Option<K> = Option<K>.None
+    public var value: Option<V> = Option<V>.None
+
+    public init() {}
+
+    public init(key: K, value: V) {
+        this.key = Option<K>.Some(key)
+        this.value = Option<V>.Some(value)
+    }
+}
+
+struct Pair_G<T, U> {
+    let x: T
+    let y: U
+    public init(a: T, b: U) {
+        x = a
+        y = b
+    }
+    public func first(): T {
+        return x
+    }
+    public func second(): U {
+        return y
+    }
+}
+
+public enum Option_G<T> {
+      Some_G(T)
+    | None_G
+
+    public func getOrThrow(): T {
+        match (this) {
+            case Some_G(v) => v
+            case None_G => throw NoneValueException()
+        }
+    }
+}
+
+func safeDiv(a: Int64, b: Int64): Option<Int64> {
+    var res: Option<Int64> = match (b) {
+        case 0 => None
+        case _ => Some(a/b)
+    }
+    return res
+}
+
+struct RecordData<T> {
+    var a: T 
+    public init(x: T) {
+        a = x 
+    }
+}
+
+func times2(a: Int64): Int64 {
+    return a * 2
+}
+
+func plus10(a: Int64): Int64 {
+    return a + 10
+}
+
+// func times2plus10(a: Int64) {
+//     return composition<Int64, Int64, Int64>(times2, plus10)(a)
+// }
+
+abstract class Animal {
+    public func run(): String
+}
+
+class Dog <: Animal {
+    public func run(): String {
+        return "dog run"
+    }
+}
+
+class Fox <: Animal {
+    public func run(): String {
+        return "fox run"
+    }
+}
+
+class Zoo<T> where T <: Animal {
+    var animals: ArrayList<Animal> = ArrayList<Animal>()
+    public func addAnimal(a: T) {
+        animals.append(a)
+    }
+
+    public func allAnimalRuns() {
+        for(a in animals) {
+            println(a.run())
+        }
+    }
 }
 
 enum RGBColor {
